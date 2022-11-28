@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "lib": ["es2017", "ES2021"],
+    "module": "commonjs",
+    "target": "es6",
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
+    "useUnknownInCatchVariables": false,
+    "types": ["node", "jest"],
+    "outDir": "bin",
+    "esModuleInterop": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
