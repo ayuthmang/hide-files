@@ -9,9 +9,8 @@
     "strict": true,
     "useUnknownInCatchVariables": false,
     "types": ["node", "jest"],
-    "outDir": "bin",
     "esModuleInterop": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["src", "bin"],
+  "exclude": ["node_modules", "src/**/*.test.ts"]
 }
