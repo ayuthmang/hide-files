@@ -1,0 +1,16 @@
+.github
+.gitignore
+node_modules/
+.DS_Store
+
+# source
+**/*.ts
+*.ts
+
+# definitions
+!**/*.d.ts
+!*.d.ts
+
+# configuration
+gulpfile.js
+tsconfig.json
