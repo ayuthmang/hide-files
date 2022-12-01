@@ -4,9 +4,24 @@ During participants setup their presentation for the SCB TechX's Hackathon pitch
 
 ⚠️ This CLI supports only on macOS!
 
+## Installation
+
+First, install the cli
+
+```bash
+# npm
+$ npm install -g hide-files
+
+# yarn
+$ yarn global add hide-files
+
+# pnpm
+$ pnpm add -g hide-files
+```
+
 ## Usage
 
-Hide all files and folders in Desktop
+Then execute the command to hide your cluttered desktop icons 🤫
 
 ```bash
 $ hide-files hide
