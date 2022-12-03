@@ -2,6 +2,14 @@
   "name": "hide-files",
   "version": "1.0.3",
   "license": "MIT",
+  "homepage": "https://github.com/ayuthmang/hide-files#readme",
+  "bugs": {
+    "url": "https://github.com/ayuthmang/hide-files/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayuthmang/hide-files"
+  },
   "bin": {
     "hide-files": "bin/hide-files.js"
   },
