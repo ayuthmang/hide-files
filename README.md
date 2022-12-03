@@ -40,6 +40,6 @@ $ hide-files unhide
 
 ## Special Thanks 🙏
 
-![./docs/raycasts-hide-files-extension-preview.png](raycasts hide files extension screenshot)
+![raycasts hide files extension screenshot](./docs/raycasts-hide-files-extension-preview.png)
 
 This project is inspired by the Open Source [Raycast](https://www.raycast.com/)'s [extension](https://github.com/raycast/extensions/) that is fully open source.
