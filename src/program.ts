@@ -5,14 +5,13 @@ import chalk from 'chalk'
 import { spawn } from 'child_process'
 import { homedir } from 'os'
 import { join, sep } from 'path'
-import { argv } from 'process'
 
 program
   .command('hide')
   .description('Hide all files and folders in desktop')
   .action(() => {
     console.log(
-      `Your files and folders have been ${chalk.yellow('hidden! 🤫')}`
+      `Your files and folders have been ${chalk.yellow('hidden! 🤫')}`,
     )
     const desktopPath = join(homedir(), 'Desktop', sep)
     spawn('chflags', ['hidden', `${desktopPath.replaceAll(' ', `" "`)}*`], {
