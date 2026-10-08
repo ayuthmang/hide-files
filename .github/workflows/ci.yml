@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Lint, test and build (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 22, 24]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm build
+
+  e2e:
+    name: End-to-end on macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install the packed CLI globally
+        run: |
+          npm pack
+          npm install --global ./hide-files-*.tgz
+          hide-files --version
+
+      - name: Hide and unhide the items on a test Desktop
+        run: |
+          export HOME="$RUNNER_TEMP/home"
+          desktop="$HOME/Desktop"
+          mkdir -p "$desktop/My Folder"
+          touch "$desktop/Screenshot 1.png" "$desktop/\$(echo pwned).txt" "$desktop/.DS_Store"
+
+          flags() { /usr/bin/stat -f '%Sf' "$1"; }
+
+          hide-files hide
+          for item in "$desktop"/*; do
+            [[ "$(flags "$item")" == *hidden* ]] || { echo "::error::Not hidden: $item"; exit 1; }
+          done
+          [[ "$(flags "$desktop/.DS_Store")" != *hidden* ]] || { echo "::error::Dotfile was hidden"; exit 1; }
+
+          hide-files unhide
+          for item in "$desktop"/*; do
+            [[ "$(flags "$item")" != *hidden* ]] || { echo "::error::Still hidden: $item"; exit 1; }
+          done
+
+      - name: Exit non-zero when the Desktop folder is missing
+        run: |
+          export HOME="$RUNNER_TEMP/no-home"
+          if hide-files hide; then
+            echo "::error::Expected hide-files to fail without a Desktop folder"
+            exit 1
+          fi
