@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-
 import { program } from 'commander'
 import chalk from 'chalk'
 import { spawn } from 'child_process'
