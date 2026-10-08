@@ -2,4 +2,4 @@
 
 import { program } from '../src'
 
-program.parse()
+program.parseAsync()

@@ -8,7 +8,7 @@
     "sourceMap": false,
     "strict": true,
     "useUnknownInCatchVariables": false,
-    "types": ["node", "jest"],
+    "types": ["node"],
     "esModuleInterop": true
   },
   "include": ["src", "bin"],
