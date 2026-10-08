@@ -1,17 +1,20 @@
+# hide-files
+
+Hide (and show again) every file and folder on your macOS Desktop with a single command.
+
 ## Motivation
 
-During participants setup their presentation for the SCB TechX's Hackathon pitching. I found that some of their desktop has plenty of screenshots, folders or some files that unnecessary their
-presentation. How might we have a single command or cli without an user has to remember the command or googling command to hide their desktop icons?
+While participants were setting up their presentations for the SCB TechX Hackathon pitches, I noticed that many of their desktops were cluttered with screenshots, folders, and other files that had nothing to do with their presentations. How might we give people a single command to hide their desktop icons, without having to remember or look up an obscure terminal command?
 
 ## Demo
 
 ![demo hide and show files with hide-files cli](./docs/demo.gif)
 
-⚠️ This CLI supports only on macOS!
+⚠️ This CLI works only on macOS.
 
 ## Installation
 
-First, install the cli
+Install the CLI globally (requires Node.js 18 or later):
 
 ```bash
 # npm
@@ -26,20 +29,31 @@ $ pnpm add -g hide-files
 
 ## Usage
 
-Then execute the command to hide your cluttered desktop icons 🤫
+Hide the clutter on your Desktop 🤫
 
 ```bash
 $ hide-files hide
 ```
 
-Unhide all files and folders in Desktop
+Show all files and folders on your Desktop again
 
 ```bash
 $ hide-files unhide
+```
+
+`hide-files` sets the macOS `hidden` flag on each item with `chflags`. It skips dotfiles (such as `.DS_Store`), and nothing is moved or deleted. Note that `unhide` shows every item on your Desktop, including any you had hidden yourself before running `hide`.
+
+## Development
+
+```bash
+$ pnpm install
+$ pnpm test     # run the unit tests
+$ pnpm lint     # check lint and formatting (pnpm lint:fix to fix)
+$ pnpm build    # compile TypeScript to JavaScript
 ```
 
 ## Special Thanks 🙏
 
 ![raycasts hide files extension screenshot](./docs/raycasts-hide-files-extension-preview.png)
 
-This project is inspired by the [Raycast](https://www.raycast.com/)'s [hide-fiiles extension](https://github.com/raycast/extensions/tree/main/extensions/hide-files) that is fully open source.
+This project is inspired by [Raycast](https://www.raycast.com/)'s [Hide Files extension](https://github.com/raycast/extensions/tree/main/extensions/hide-files), which is fully open source.
